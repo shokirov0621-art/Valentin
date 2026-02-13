@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine</title>
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ff758c);
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+}
+
+#bigHeart{
+width:200px;
+height:180px;
+position:relative;
+transform:rotate(-45deg);
+background:#ff004f;
+box-shadow:0 0 40px #ff4d88;
+animation:pulse 1.5s infinite;
+}
+
+#bigHeart:before,
+#bigHeart:after{
+content:"";
+position:absolute;
+width:200px;
+height:180px;
+background:#ff004f;
+border-radius:50%;
+}
+
+#bigHeart:before{top:-100px;left:0;}
+#bigHeart:after{left:100px;top:0;}
+
+@keyframes pulse{
+0%{transform:scale(1) rotate(-45deg);}
+50%{transform:scale(1.15) rotate(-45deg);}
+100%{transform:scale(1) rotate(-45deg);}
+}
+
+.smallHeart{
+position:absolute;
+width:12px;
+height:12px;
+background:#fff;
+transform:rotate(-45deg);
+opacity:0.8;
+box-shadow:0 0 10px #fff;
+animation:float 6s linear infinite;
+}
+
+.smallHeart:before,
+.smallHeart:after{
+content:"";
+position:absolute;
+width:12px;
+height:12px;
+background:#fff;
+border-radius:50%;
+}
+
+.smallHeart:before{top:-6px;left:0;}
+.smallHeart:after{left:6px;top:0;}
+
+@keyframes float{
+0%{transform:translate(0,0) rotate(-45deg);}
+100%{transform:translate(150px,-150px) rotate(-45deg);}
+}
+
+h1{color:white;margin:30px 0;font-size:32px;}
+
+.buttons{
+display:flex;
+gap:20px;
+}
+
+button{
+padding:12px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+#yes{
+background:#ff004f;
+color:white;
+box-shadow:0 0 20px #ff4d88;
+}
+
+#no{
+background:white;
+}
+
+#message{
+display:none;
+color:white;
+font-size:36px;
+margin-top:20px;
+animation:fade 2s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4c7d3a7a4d.mp3" type="audio/mpeg">
+</audio>
+
+<div id="bigHeart"></div>
+
+<h1>Will you be my valentine?</h1>
+
+<div class="buttons">
+<button id="yes">Yes</button>
+<button id="no">No</button>
+</div>
+
+<div id="message">Now you are my Batwoman 💘</div>
+
+<script>
+// small hearts
+for(let i=0;i<20;i++){
+let s=document.createElement("div");
+s.className="smallHeart";
+s.style.left=Math.random()*150+"px";
+s.style.top=Math.random()*150+"px";
+s.style.animationDelay=Math.random()*5+"s";
+bigHeart.appendChild(s);
+}
+
+// No button escape
+const no=document.getElementById("no");
+no.onmouseover=()=>{
+no.style.position="absolute";
+no.style.left=Math.random()*80+"%";
+no.style.top=Math.random()*80+"%";
+}
+
+// Yes click
+document.getElementById("yes").onclick=()=>{
+document.querySelector(".buttons").style.display="none";
+document.querySelector("h1").style.display="none";
+document.getElementById("message").style.display="block";
+bigHeart.style.transform="scale(1.5) rotate(-45deg)";
+}
+</script>
+
+</body>
+</html>
